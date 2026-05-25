@@ -111,7 +111,7 @@ Now from any component you can write `import api from './api.js'` and then `api.
 
 ## Step 5 — Build the table that displays records
 
-Replace the contents of `src/App.vue`. You're building a component that:
+Rewrite the contents of `src/App.vue`. You're building a component that:
 
 1. On mount, calls the API to load all records
 2. Stores the records in a reactive variable
@@ -203,6 +203,7 @@ The form needs four inputs:
 - Time input for check-out (`<input type="time">`)
 - A submit button (don't use `<form>` and don't use type="submit" — use a regular button with an `@click`. Forms in single-page apps can be annoying)
 - Error message areas under each field for showing validation errors from the API
+- If you use a Dialog, the error messages live inside it
 
 You'll need new reactive state:
 
@@ -258,6 +259,7 @@ When the user clicks the Edit button on a row:
 1. Set `editingId` to that record's ID
 2. Copy the record's data into the form fields
 3. (Nice touch) scroll the page down to the form so the user sees it
+4. If you used a Dialog instead of an inline form, opening the dialog replaces the scroll step
 
 Now, the submit button should do *either* create or update depending on whether `editingId` is null:
 
