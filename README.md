@@ -97,13 +97,13 @@ You don't want to type `http://127.0.0.1:8000/api/attendance` everywhere. Create
 
 Hints:
 
-- Create a new file at `src/api.js`
+- Create a new file at `src/services/api.js`
 - Look up `axios.create({ baseURL: ... })` in the axios docs
 - Set the base URL to `http://127.0.0.1:8000/api`
 - Set the default headers to `Accept: application/json` and `Content-Type: application/json`
 - Export the configured instance as the default export
 
-Now from any component you can write `import api from './api.js'` and then `api.get('/attendance')`.
+Now from any service in `src/services` you can write `import api from './api.js'` and then `api.get('/attendance')`.
 
 **Checkpoint:** The file exists and exports a configured axios instance.
 
