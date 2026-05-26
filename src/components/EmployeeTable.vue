@@ -7,6 +7,7 @@ const records = ref(null);
 
 onMounted(async () => {
     try {
+        // make a GET request to the backend API to fetch attendance records
         const response = await api.get('/attendance/');
         records.value = response.data;
     } catch (error) {
@@ -42,7 +43,7 @@ onMounted(async () => {
             <tr v-else v-for="record in records" :key="record.id" class="divide-y divide-slate-100">
                 <!-- similar to how handlebars inject context into html -->
                 <td class="px-4 py-3">{{ record.id }}</td>
-                <td class="px-4 py-3">{{ record.name }}</td>
+                <td class="px-4 py-3">{{ record.employee_name }}</td>
                 <td class="px-4 py-3">{{ record.date }}</td>
                 <td class="px-4 py-3">{{ record.check_in_time }}</td>
                 <td class="px-4 py-3">{{ record.check_out_time }}</td>

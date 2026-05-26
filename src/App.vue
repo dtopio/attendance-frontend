@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
-import EmployeeTable from './components/EmployeeTable.vue';
+  import EmployeeTable from './components/EmployeeTable.vue';
+  import Header from './components/Header.vue';
+  import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <EmployeeTable />
+  <Header />
+  <div class="h-screen max-h-screen overflow-y-scroll">
+    <EmployeeTable />
+  </div>
+  <Footer />
 </template>
