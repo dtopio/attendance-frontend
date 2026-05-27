@@ -29,6 +29,7 @@
       }
   });
 
+  // helper function to format form data before sending to backend
   const formatData = (data) => {
     return {
       employee_name: data.employee_name,
@@ -38,6 +39,7 @@
     };
   }
 
+  // logic to handle submitting the form for both adding and editing records
   const handleSubmit = async () => {
     // Reset error
     submitting.value = true;
@@ -74,6 +76,7 @@
     }
   }
 
+  // helper function to handle filling in the correct editingId and populating the form
   const handleEdit = (record) => {
     window.location.href = '#form';
     editingId.value = record.id;
@@ -85,6 +88,7 @@
     };
   }
 
+  // logic to handle deleting a record
   const handleDelete = async (record) => {
     if (window.confirm('Are you sure?')) {
       try {
@@ -97,6 +101,7 @@
     }
   }
 
+  // helper function to reset form and editingId when canceling an edit
   const handleCancel = () => {
     editingId.value = null;
     form.value = {employee_name: '', date: '', check_in_time: '', check_out_time: ''};
@@ -142,7 +147,6 @@
             </tr>
         </tbody>
     </table>
-
 
     <form id="form" class="bg-white rounded-lg shadow-md mx-auto max-w-2xl flex flex-col gap-4 p-6 m-6">
       <h2 class="text-sm font-semibold text-center">{{ editingId ? 'Edit Record' : 'Add Record' }}</h2>
