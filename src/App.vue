@@ -34,7 +34,7 @@
       employee_name: data.employee_name,
       date: data.date,
       check_in_time: `${data.check_in_time}:00`,
-      check_out_time: `${data.check_out_time}:00`
+      check_out_time: data.check_out_time ? `${data.check_out_time}:00` : null,
     };
   }
 
