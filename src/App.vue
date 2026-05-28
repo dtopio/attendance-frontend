@@ -12,6 +12,7 @@
     check_out_time: ''
   });
   const editingId = ref(null);
+  const deletingId = ref(null);
   const errors = ref({});
   const isLoading = ref(true);
   const records = ref(null);
@@ -101,15 +102,18 @@
     };
   }
 
-  const handleConfirmDelete = (confirmation) => {
-    confirmDelete.value = confirmation;
+  const handleConfirmDelete = (confirmation, record) => {
+    if(record) {
+      confirmDelete.value = confirmation;
+      deletingId.value = record.id;
+    }
   }
 
   // logic to handle deleting a record
-  const handleDelete = async (record) => {
+  const handleDelete = async (recordId) => {
     try {
-      await api.delete(`/attendance/${record.id}/`);
-      records.value = records.value.filter(r => r.id !== record.id);
+      await api.delete(`/attendance/${recordId}/`);
+      records.value = records.value.filter(r => r.id !== recordId);
     } catch (error) {
       console.error('Error deleting record:', error);
       window.alert('Failed to delete record. Please try again.');
@@ -188,17 +192,16 @@
                 <td class="px-4 py-3">{{ record.check_out_time }}</td>
                 <td class="px-4 py-3">{{ calculateDuration(record.check_in_time, record.check_out_time) }}</td>
                 <td class="px-4 py-3 space-x-2">
-                    <button type="button" class="cursor-pointer" @click="handleEdit(record)">Edit</button>
-                    <button type="button" class="cursor-pointer" @click="handleConfirmDelete(true)">Delete</button>
+                  <button type="button" class="cursor-pointer" @click="handleEdit(record)">Edit</button>
+                  <button type="button" class="cursor-pointer" @click="handleConfirmDelete(true, record)">Delete</button>
                 </td>
-
                 <!-- Delete confirmation modal -->
                 <div v-if="confirmDelete" class="fixed w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800/30 flex items-center justify-center"
                   @click="handleConfirmDelete(false)"
                 >
                   <div class="bg-white rounded-lg shadow-md bg-opacity-30 flex flex-col items-center justify-center p-5">
                     <p class="font-semibold text-center">Are you sure you want to delete this record?</p>
-                    <button type="button" class="cursor-pointer text-center" @click="handleDelete(record)">Confirm</button>
+                    <button type="button" class="cursor-pointer text-center" @click="handleDelete(deletingId)">Confirm</button>
                     <button type="button" class="cursor-pointer text-center" @click="handleConfirmDelete(false)">Cancel</button>
                   </div>
                 </div>
