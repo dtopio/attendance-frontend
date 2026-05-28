@@ -194,10 +194,10 @@
                 <td class="px-4 py-3">{{ calculateDuration(record.check_in_time, record.check_out_time) }}</td>
                 <td class="px-4 py-3 space-x-2">
                   <button type="button" class="cursor-pointer" @click="handleEdit(record)">Edit</button>
-                  <button type="button" class="cursor-pointer" @click="handleConfirmDelete(record)">Delete</button>
+                  <button type="button" class="cursor-pointer" @click="handleConfirmDelete(true, record)">Delete</button>
                 </td>
                 <!-- Delete confirmation modal -->
-                <div v-if="!deletingId" class="fixed w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800/30 flex items-center justify-center"
+                <div v-if="confirmDelete" class="fixed w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800/30 flex items-center justify-center"
                   @click="handleConfirmDelete(false, null)"
                 >
                   <div class="bg-white rounded-lg shadow-md bg-opacity-30 flex flex-col items-center justify-center p-5">
