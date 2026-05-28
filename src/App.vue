@@ -71,7 +71,6 @@
           {...formattedData, id: editingId.value}
         );
         editingId.value = null;
-        window.location.href = '';
       }
       else {
         response = await api.post('/attendance', JSON.stringify(formattedData));
