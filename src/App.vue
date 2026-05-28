@@ -102,10 +102,8 @@
   }
 
   const handleConfirmDelete = (confirmation, record) => {
-    if(record) {
-      confirmDelete.value = confirmation;
-      deletingId.value = record.id;
-    }
+    confirmDelete.value = confirmation;
+    deletingId.value = record.id;
   }
 
   // logic to handle deleting a record
